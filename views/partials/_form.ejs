@@ -1,0 +1,28 @@
+<form action="/api/tasks" method="POST" id="add_task">
+  <div class="new_task">
+    <div class="form-group">
+      <label for="description" class="text-light">Description</label>
+      <input type="hidden" name="id" value="" />
+      <input type="text" name="description" placeholder="Description" />
+    </div>
+    <div class="form-group">
+      <label for="completed" class="text-light">Completed</label>
+      <div class="radio inline">
+        <input type="radio" id="radio-2" name="completed" value="True" />
+        <label for="radio-2" class="radio-label">True</label>
+      </div>
+      <div class="radio inline">
+        <input type="radio" id="radio-3" name="completed" value="False" />
+        <label for="radio-3" class="radio-label">False</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="deadline" class="text-light">Deadline</label>
+      <input type="date" name="deadline" placeholder="Deadline" />
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn text-dark update">Save</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,85 @@
+form {
+  position: relative;
+  z-index: 2;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 2rem;
+  width: 30rem;
+}
+
+.showcase-form h1 {
+  font-weight: 600;
+  font-size: 2.3rem;
+  line-height: 1.1;
+  padding: 3rem 10rem 2rem 2rem;
+  margin-left: 0;
+  margin-right: 5rem;
+  color: black;
+}
+
+#textbox {
+  height: 3em;
+  width: 70%;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: #444;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+#password {
+  height: 3em;
+  width: 70%;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: #444;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+#submit-btn {
+  display: inline-block;
+  background: red;
+  color: #fff;
+  padding: 0.7rem 1.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+  border-radius: 5px;
+  width: 70%;
+  margin-bottom: 3rem;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  cursor: pointer;
+  font-size: 1rem;
+  color: white;
+  background-color: black;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+  padding: 0.5rem 0.7rem;
+  border-radius: 5px;
+  width: 70%;
+  height: 2rem;
+  margin-bottom: 3rem;
+}
+
+.inputfile + label:hover {
+  background-color: red;
+}

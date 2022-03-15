@@ -1,0 +1,60 @@
+<%- include('partials/_header'); -%>
+
+<main id="site-main">
+  <div class="container">
+    <div class="box-nav d-flex justify-between">
+      <div class="filter">
+        <a href="/tasks"><i class="fas fa-angle-double-left"></i> All Tasks</a>
+      </div>
+    </div>
+    <div class="form-title text-center">
+      <h2 class="text-dark">Update Task</h2>
+      <span class="text-light">Use the below form to Update a task</span>
+    </div>
+
+    <!-- add user form -->
+    <!-- form handling -->
+    <form method="POST" id="update_task">
+      <div class="new_task">
+        <div class="form-group">
+          <label for="description" class="text-light">Description</label>
+          <input type="hidden" name="id" value="<%= task._id %>" />
+          <input
+            type="text"
+            name="description"
+            value="<%= task.description %>"
+            placeholder="Description"
+          />
+        </div>
+        <div class="form-group">
+          <label for="completed" class="text-light">Completed</label>
+          <div class="radio inline">
+            <input type="radio" id="radio-2" name="completed" value="True" <%=
+            task.completed == 'True' ? 'checked' : '' %>>
+            <label for="radio-2" class="radio-label">True</label>
+          </div>
+          <div class="radio inline">
+            <input type="radio" id="radio-3" name="completed" value="False" <%=
+            task.completed == 'False' ? 'checked' : '' %> >
+            <label for="radio-3" class="radio-label">False</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="deadline" class="text-light">Deadline</label>
+          <input
+            type="date"
+            name="deadline"
+            value="<%= task.deadline%>"
+            placeholder="Deadline"
+          />
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn text-dark update">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
+
+<%- include('partials/_footer'); -%>

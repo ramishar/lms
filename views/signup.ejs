@@ -1,0 +1,102 @@
+<%- include('partials/header'); -%>
+<link rel="stylesheet" href="/style2.css" />
+<div class="showcase-form">
+  <form action="/signup" method="post">
+    <h1>Sign Up</h1>
+    <input
+      type="text"
+      ,
+      id="textbox"
+      name="username"
+      placeholder="  Username"
+    />
+    <input
+      type="text"
+      ,
+      id="textbox"
+      name="fullname"
+      placeholder="  Fullname"
+    />
+    <input
+      type="text"
+      ,
+      id="textbox"
+      name="email"
+      placeholder="  Email Address"
+      required
+    />
+    <div class="email error"></div>
+    <input
+      type="text"
+      ,
+      id="textbox"
+      name="contact"
+      placeholder="  Contact number"
+    />
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="  Password"
+      required
+    />
+    <div class="password error"></div>
+    <input
+      id="img"
+      type="file"
+      name="profile_photo"
+      placeholder="Profile picture"
+      class="inputfile"
+      accept="image/*"
+    />
+    <label for="img">Choose a profile picture:</label>
+    <button type="submit" id="submit-btn">Sign Up</button>
+  </form>
+</div>
+
+<%- include('partials/footer'); -%>
+
+<script>
+  const form = document.querySelector("form");
+  const emailError = document.querySelector(".email.error");
+  const passwordError = document.querySelector(".password.error");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    //reset errors everytime we submit form
+    emailError.textContent = "";
+    passwordError.textContent = "";
+
+    //get values
+    const username = form.username.value;
+    const fullname = form.fullname.value;
+    const email = form.email.value;
+    const contact = form.contact.value;
+    const password = form.password.value;
+    const profile_photo = form.profile_photo.value;
+    try {
+      const res = await fetch("/signup", {
+        method: "POST",
+        body: JSON.stringify({
+          username,
+          fullname,
+          email,
+          contact,
+          password,
+          profile_photo,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+      if (data.errors) {
+        emailError.textContent = data.errors.email;
+        passwordError.textContent = data.errors.password;
+      }
+      if (data.user) {
+        location.assign("/"); //redirect to home page
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  });
+</script>

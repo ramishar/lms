@@ -1,0 +1,62 @@
+<%- include('partials/header'); -%>
+<link rel="stylesheet" href="/style2.css" />
+<div class="showcase-form">
+  <form action="/login" method="POST">
+    <h1>Log In</h1>
+    <input
+      type="text"
+      id="textbox"
+      name="email"
+      placeholder="  Email address"
+      required
+    />
+    <div class="email error"></div>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="  Password"
+      required
+    />
+    <div class="password error"></div>
+    <button type="submit" id="submit-btn">LogIn</button>
+  </form>
+</div>
+
+<%- include('partials/footer'); -%>
+
+<script>
+  const form = document.querySelector("form");
+  const emailError = document.querySelector(".email.error");
+  const passwordError = document.querySelector(".password.error");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    //reset errors everytime we submit form
+    emailError.textContent = "";
+    passwordError.textContent = "";
+
+    //get values
+    const email = form.email.value;
+    const password = form.password.value;
+    try {
+      const res = await fetch("/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.errors) {
+        emailError.textContent = data.errors.email;
+        passwordError.textContent = data.errors.password;
+      }
+      if (data.user) {
+        location.assign("/"); //if valid user, redirect to home page
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  });
+</script>
